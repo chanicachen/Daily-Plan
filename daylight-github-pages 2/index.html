@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#edf1ee">
+  <meta name="description" content="A calm, browser-local personal planner.">
+  <meta property="og:title" content="Daylight — Personal Planner">
+  <meta property="og:description" content="Your time, softly held.">
+  <meta property="og:image" content="./assets/og.png">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data: blob:; connect-src 'none'; object-src 'none'; base-uri 'none'">
+  <title>Daylight — Personal Planner</title>
+  <link rel="icon" href="./assets/favicon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <section id="lock-screen" class="login-shell" aria-labelledby="lock-title">
+    <div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+    <div class="login-card glass">
+      <div class="login-brand"><span class="brand-mark">D</span><div><strong>Daylight</strong><span>Your time, softly held.</span></div></div>
+      <p class="local-chip"><span aria-hidden="true">⌁</span> Browser-local edition</p>
+      <h1 id="lock-title">Create your local lock.</h1>
+      <p id="lock-copy">Choose a password for this browser. It keeps casual visitors out, but it is not server-grade security.</p>
+      <form id="lock-form" class="login-form">
+        <label for="lock-password" id="password-label">New password</label>
+        <input id="lock-password" name="password" type="password" minlength="8" autocomplete="current-password" required>
+        <div id="confirm-wrap">
+          <label for="lock-confirm">Confirm password</label>
+          <input id="lock-confirm" name="confirm" type="password" minlength="8" autocomplete="new-password">
+        </div>
+        <p id="lock-error" class="login-error" role="alert" aria-live="polite"></p>
+        <button id="lock-submit" type="submit">Create lock &amp; open</button>
+      </form>
+      <button id="reset-local" class="quiet-button" type="button">Reset this browser’s local copy</button>
+      <p class="login-note">Your tasks and lock stay only in this browser. Clearing browser data removes them.</p>
+      <noscript><p class="noscript-note">JavaScript is required to use this browser-local planner.</p></noscript>
+    </div>
+  </section>
+
+  <div id="planner" hidden></div>
+
+  <dialog id="task-dialog" class="task-dialog glass">
+    <form id="task-form" method="dialog">
+      <div class="dialog-heading"><div><span id="task-dialog-kicker">New task</span><h2 id="task-dialog-title">Add something gentle.</h2></div><button type="button" data-close-dialog aria-label="Close">×</button></div>
+      <label for="task-text">Task</label>
+      <input id="task-text" name="text" maxlength="240" placeholder="What would feel good to finish?" required>
+      <input id="task-date" name="date" type="hidden">
+      <input id="task-id" name="id" type="hidden">
+      <div class="dialog-actions"><button type="button" class="secondary" data-close-dialog>Cancel</button><button type="submit">Save task</button></div>
+    </form>
+  </dialog>
+
+  <input id="import-file" class="sr-only" type="file" accept="application/json">
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <script src="./app.js" defer></script>
+</body>
+</html>
